@@ -22,40 +22,10 @@ public class ThirdPersonController : MonoBehaviour{
     
 
     void Update(){
-        Debug.Log(speed);
-        /*
-        if (Input.GetKeyDown("up")){
-            speed += 1;
-   
-            if (speed > 10){
-                speed = 10;
-            }
-            Debug.Log ("Up Arrow Pressed and Speed is " + speed);
-        }
-        else if (Input.GetKeyDown("down")) {
-            speed -= 1;
-   
-            if (speed < 0) {
-                speed = 0;
-            }
-            Debug.Log ("Down  Arrow Pressed and Speed is " + speed);
-        }
-        skele.GetComponent<Animator>().SetInteger ("speed", speed);
-
-    }
-
-    void FixedUpdate() {
-        skele.GetComponent<Rigidbody>().velocity = skele.transform.forward * (speed * 0.1f);
-    }
-    */
-
+        //Debug.Log(speed);
+        
         if (Input.GetKey(KeyCode.Mouse1)){
             speed = 5;
-            /*speed += 1;
-
-            if (speed > 10){
-                speed = 10;
-            }*/
 
             playerCharacter.velocity = transform.forward * speed;
             anim.SetBool("Walking", true);
@@ -64,7 +34,17 @@ public class ThirdPersonController : MonoBehaviour{
         }
 
         if (Input.GetKey("w")){
-            speed = 12;
+            speed += 1;
+            if (speed < 12){
+                anim.SetBool("Walking", true);
+            } else {
+                anim.SetBool("Walking", false);
+            }
+
+            if (speed > 12){
+                speed = 12;
+                anim.SetBool("Running", true);
+            }
       
             playerCharacter.velocity = transform.forward * speed;
             anim.SetBool("Running", true);
